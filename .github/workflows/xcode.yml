@@ -5,21 +5,21 @@ on: [push]
 jobs:
   ios:
     name: "Xcode ${{ matrix.env.xcode }}, ${{ matrix.env.runtime }}, ${{ matrix.env.device }}"
-    runs-on: macOS-12
+    runs-on: macOS-14
     strategy:
       matrix:
         env:
-          - xcode: 13.4
+          - xcode: 15.4
             runtime: "iOS 15.5"
             device: "iPhone 13 Pro"
-          - xcode: 13.4
+          - xcode: 15.4
             runtime: "iOS 14.5"
             device: "iPhone 12 Pro Max"
-          - xcode: 13.4
+          - xcode: 15.4
             runtime: "iOS 13.7"
             device: "iPhone 11"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: "Select Xcode ${{ matrix.env.xcode }}"
@@ -50,21 +50,21 @@ jobs:
 
   watchos:
     name: "Xcode ${{ matrix.env.xcode }}, ${{ matrix.env.runtime }}, ${{ matrix.env.device }}"
-    runs-on: macOS-12
+    runs-on: macOS-14
     strategy:
       matrix:
         env:
-          - xcode: 13.4
+          - xcode: 15.4
             runtime: "watchOS 8.5"
             device: "Apple Watch Series 7 - 45mm"
-          - xcode: 13.4
+          - xcode: 15.4
             runtime: "watchOS 7.4"
             device: "Apple Watch Series 6 - 44mm"
-          - xcode: 13.4
+          - xcode: 15.4
             runtime: "watchOS 6.2"
             device: "Apple Watch Series 4 - 40mm"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: "Select Xcode ${{ matrix.env.xcode }}"
