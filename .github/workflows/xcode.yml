@@ -10,14 +10,14 @@ jobs:
       matrix:
         env:
           - xcode: 15.4
+            runtime: "iOS 17.5"
+            device: "iPhone 15 Pro Max"
+          - xcode: 15.4
+            runtime: "iOS 16.4"
+            device: "iPhone 12 mini"
+          - xcode: 15.4
             runtime: "iOS 15.5"
-            device: "iPhone 13 Pro"
-          - xcode: 15.4
-            runtime: "iOS 14.5"
-            device: "iPhone 12 Pro Max"
-          - xcode: 15.4
-            runtime: "iOS 13.7"
-            device: "iPhone 11"
+            device: "iPhone SE"
     steps:
       - uses: actions/checkout@v4
         with:
@@ -27,9 +27,9 @@ jobs:
         with:
           version: ${{ matrix.env.xcode }}
       - name: "Cache downloaded simulator runtimes"
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
-          path: ~/Library/Caches/XcodeInstall/*.dmg
+          path: ~/Downloads/*.dmg
           key: Xcode ${{ matrix.env.xcode }}+${{ matrix.env.runtime }}
       - name: "Prepare simulator"
         id: prepare-simulator
@@ -41,11 +41,12 @@ jobs:
         run: |
           set -o pipefail
           xcodebuild test -project "OneTimePassword.xcodeproj" -scheme "OneTimePassword (iOS)" -destination "id=${{ steps.prepare-simulator.outputs.destination-id }}" | xcpretty -c
-      - uses: sersoft-gmbh/swift-coverage-action@v3
+      - uses: sersoft-gmbh/swift-coverage-action@v4
         with:
           target-name-filter: ^OneTimePassword$
-      - uses: codecov/codecov-action@v3
+      - uses: codecov/codecov-action@v4
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
 
   watchos:
@@ -55,14 +56,14 @@ jobs:
       matrix:
         env:
           - xcode: 15.4
+            runtime: "watchOS 10.5"
+            device: "Apple Watch Ultra 2 (49mm)"
+          - xcode: 15.4
+            runtime: "watchOS 9.4"
+            device: "Apple Watch SE (44mm) (2nd generation)"
+          - xcode: 15.4
             runtime: "watchOS 8.5"
-            device: "Apple Watch Series 7 - 45mm"
-          - xcode: 15.4
-            runtime: "watchOS 7.4"
-            device: "Apple Watch Series 6 - 44mm"
-          - xcode: 15.4
-            runtime: "watchOS 6.2"
-            device: "Apple Watch Series 4 - 40mm"
+            device: "Apple Watch Series 3 (38mm)"
     steps:
       - uses: actions/checkout@v4
         with:
@@ -72,9 +73,9 @@ jobs:
         with:
           version: ${{ matrix.env.xcode }}
       - name: "Cache downloaded simulator runtimes"
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
-          path: ~/Library/Caches/XcodeInstall/*.dmg
+          path: ~/Downloads/*.dmg
           key: Xcode ${{ matrix.env.xcode }}+${{ matrix.env.runtime }}
       - name: "Prepare simulator"
         id: prepare-simulator
