@@ -56,7 +56,7 @@ class EquatableTests: XCTestCase {
 
     func testGeneratorEquality() throws {
         let generator = try Generator(factor: .counter(0), secret: Data(), algorithm: .sha1, digits: 6)
-        let badData = "0".data(using: String.Encoding.utf8)!
+        let badData = Data("0".utf8)
 
         XCTAssert(try generator == Generator(factor: .counter(0), secret: Data(), algorithm: .sha1, digits: 6))
         XCTAssert(try generator != Generator(factor: .counter(1), secret: Data(), algorithm: .sha1, digits: 6))

@@ -257,7 +257,7 @@ class KeychainTests: XCTestCase {
     }
 
     func testBadData() throws {
-        let badData = " ".data(using: .utf8)!
+        let badData = Data(" ".utf8)
 
         let keychainAttributes: [String: AnyObject] = [
             kSecAttrGeneric as String:  badData as NSData,
@@ -275,7 +275,7 @@ class KeychainTests: XCTestCase {
     }
 
     func testBadURL() throws {
-        let badData = "http://example.com".data(using: .utf8)!
+        let badData = Data("http://example.com".utf8)
 
         let keychainAttributes: [String: AnyObject] = [
             kSecAttrGeneric as String:  badData as NSData,

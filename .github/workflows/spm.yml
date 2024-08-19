@@ -5,13 +5,13 @@ on: [push]
 jobs:
   spm:
     name: "Xcode ${{ matrix.env.xcode }}"
-    runs-on: macOS-12
+    runs-on: macOS-14
     strategy:
       matrix:
         env:
-          - xcode: 13.4
+          - xcode: 15.4
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: "Select Xcode ${{ matrix.env.xcode }}"
         uses: ./.github/actions/xcode-select
         with:

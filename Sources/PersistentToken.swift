@@ -34,12 +34,6 @@ public struct PersistentToken: Equatable, Hashable {
     /// The keychain's persistent identifier for the saved token.
     public let identifier: Data
 
-    /// Initializes a new `PersistentToken` with the given properties.
-    internal init(token: Token, identifier: Data) {
-        self.token = token
-        self.identifier = identifier
-    }
-
     /// Hashes the persistent token's identifier into the given hasher, providing `Hashable` conformance.
     public func hash(into hasher: inout Hasher) {
         // Since we expect every `PersistentToken`s identifier to be unique, the identifier's hash
