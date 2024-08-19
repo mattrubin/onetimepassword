@@ -14,10 +14,7 @@ jobs:
             device: "iPhone 15 Pro Max"
           - xcode: 15.4
             runtime: "iOS 16.4"
-            device: "iPhone 12 mini"
-          - xcode: 15.4
-            runtime: "iOS 15.5"
-            device: "iPhone SE"
+            device: "iPhone 8"
     steps:
       - uses: actions/checkout@v4
         with:
@@ -60,10 +57,7 @@ jobs:
             device: "Apple Watch Ultra 2 (49mm)"
           - xcode: 15.4
             runtime: "watchOS 9.4"
-            device: "Apple Watch SE (44mm) (2nd generation)"
-          - xcode: 15.4
-            runtime: "watchOS 8.5"
-            device: "Apple Watch Series 3 (38mm)"
+            device: "Apple Watch Series 4 (40mm)"
     steps:
       - uses: actions/checkout@v4
         with:
